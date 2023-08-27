@@ -68,6 +68,7 @@
     </ul>
   </main>
   <script>
+    const root = document.querySelector('#root');
     const tiles = document.querySelectorAll('.tile');
     const LEFT = 0;
     const RIGHT = 1;
@@ -190,12 +191,13 @@
       y: null,
     };
 
-    document.body.addEventListener('pointerdown', (e) => {
+
+    root.addEventListener('pointerdown', (e) => {
       startPoint.x = e.clientX;
       startPoint.y = e.clientY;
     });
 
-    document.body.addEventListener('pointerup', (e) => {
+    root.addEventListener('pointerup', (e) => {
       endPoint.x = e.clientX;
       endPoint.y = e.clientY;
       const direction = getDirection(startPoint, endPoint);
