@@ -13,7 +13,10 @@
       margin: 0;
       padding: 0;
       height: 100%;
+
       overscroll-behavior: none;
+      user-select: none;
+      touch-action: none;
     }
 
     #root {
@@ -33,8 +36,6 @@
       gap: 12px;
       place-content: center;
 
-      user-select: none;
-
       /* reset */
       list-style-type: none;
       margin: 0;
@@ -53,7 +54,7 @@
 </head>
 <body>
   <main id="root">
-    <h3 class="header">2048-v2</h3>
+    <h3 class="header">2048-v1</h3>
     <ul class="board">
       <li class="tile"></li>
       <li class="tile"></li>
