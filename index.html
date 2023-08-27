@@ -58,11 +58,15 @@
 
       transition: background-color, .15, ease-in;
     }
+
+    .scoreWrapper {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <main id="root">
-    <h3 class="header">2048-v1</h3>
+    <h3 class="header">2048-v2</h3>
     <section class="board-wrapper">
       <ul class="board">
         <li class="tile"></li>
@@ -83,9 +87,11 @@
         <li class="tile"></li>
       </ul>
     </section>
+    <section class="scoreWrapper">current score: <span id="score"></span></section>
   </main>
   <script>
     const tiles = document.querySelectorAll('.tile');
+    const scoreContainer = document.querySelector('#score');
     const LEFT = 0;
     const RIGHT = 1;
     const UP = 2;
@@ -103,16 +109,23 @@
       '#edc850',  // 512
       '#edc53f',  // 1024
       '#edc22e',  // 2048
-    ]
+    ];
+    let score = 0;
 
     const board = new Array(16).fill(0);
+    const cached = new Map();
 
     // update the content of the tile in the board
     function drawBoard(board) {
       tiles.forEach((tile, index) => {
         const content = board[index];
         tile.textContent = content || '';
-        tile.style.backgroundColor = backgroundColors[Math.log2(content || 1)]
+        const key = content || 1;
+        if (!cached.get(key)) {
+          const value = Math.log2(key);
+          cached.set(key, value);
+        }
+        tile.style.backgroundColor = backgroundColors[cached.get(key)];
       })
     }
 
@@ -171,6 +184,7 @@
             hasMoved = true;
           }
           if (currentTile === previousTile) {
+            score += currentTile;
             board[block[j - 1]] = currentTile * 2;
             board[block[j]] = 0;
             hasMerged = true;
@@ -193,6 +207,10 @@
       let seed;
       while (board[seed = randint(0, 16)] !== 0) {}
       board[seed] = 2;
+    }
+
+    function updateScore() {
+      scoreContainer.textContent = score;
     }
 
     seedTile(board);
@@ -224,6 +242,7 @@
       }
       if (hasMoved) seedTile(board);
       drawBoard(board);
+      updateScore();
       startPoint.x = null;
       startPoint.y = null;
       endPoint.x = null;
