@@ -27,19 +27,27 @@
       text-align: center;
     }
 
+    .board-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
     .board {
       --tile-width: 48px;
+
+      flex: 0 0 auto;
 
       display: grid;
       grid-template-columns: repeat(4, var(--tile-width));
       grid-template-rows: repeat(4, var(--tile-width));
       gap: 12px;
-      place-content: center;
+
+      /* background-color: brown; */
 
       /* reset */
       list-style-type: none;
       margin: 0;
-      padding: 0;
+      padding: 12px;
     }
 
     .tile {
@@ -55,24 +63,26 @@
 <body>
   <main id="root">
     <h3 class="header">2048-v1</h3>
-    <ul class="board">
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-      <li class="tile"></li>
-    </ul>
+    <section class="board-wrapper">
+      <ul class="board">
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+        <li class="tile"></li>
+      </ul>
+    </section>
   </main>
   <script>
     const tiles = document.querySelectorAll('.tile');
