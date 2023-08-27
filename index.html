@@ -141,7 +141,7 @@
       // special cases
       if (startPoint.x === endPoint.x && startPoint.y === endPoint.y) return null;
       if (startPoint.x === endPoint.x) return startPoint.y > endPoint.y ? UP : DOWN;
-      if (startPoint.y === endPoint.y) return startPoint.x > endPoint.y ? LEFT : RIGHT;
+      if (startPoint.y === endPoint.y) return startPoint.x > endPoint.x ? LEFT : RIGHT;
 
       const rad = Math.atan((endPoint.y - startPoint.y) / (endPoint.x - startPoint.x));
       const deg = rad / Math.PI * 180;
